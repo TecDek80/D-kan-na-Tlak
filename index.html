@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ดีกันนะที่รัก ❤️</title>
+
+<style>
+{
+box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(135deg, #ffb6c1, #ff6f91);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+}
+
+.container {
+  text-align: center;
+  color: white;
+  z-index: 2;
+}
+
+.heart {
+  font-size: 100px;
+  animation: beat 0.8s infinite alternate;
+  filter: drop-shadow(0 8px 15px rgba(0,0,0,.2));
+}
+
+h1 {
+  font-size: 38px;
+  margin: 15px 0 10px;
+  text-shadow: 0 3px 8px rgba(0,0,0,.2);
+}
+
+p {
+  font-size: 20px;
+}
+
+@keyframes beat {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.25);
+  }
+}
+
+.floating-heart {
+  position: absolute;
+  bottom: -50px;
+  font-size: 25px;
+  animation: floatUp 5s linear forwards;
+  opacity: .8;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(.7);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-110vh) scale(1.5);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="heart">❤️</div>
+  <h1>ดีกันนะที่รัก</h1>
+  <p>เค้าขอโทษนะ 🥺❤️</p>
+</div>
+
+<script>
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "floating-heart";
+  heart.innerHTML = ["❤️","💕","💗","💖","💘"][Math.floor(Math.random()5)];
+
+  heart.style.left = Math.random() 100 + "vw";
+  heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+  heart.style.fontSize = (18 + Math.random() * 30) + "px";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 6000);
+}
+
+setInterval(createHeart, 350);
+</script>
+
+</body>
+</html>
