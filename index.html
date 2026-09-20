@@ -3,22 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>ดีกันนะที่รัก ❤️</title>
 
 <style>
-{
-box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
   height: 100vh;
   overflow: hidden;
-  background: linear-gradient(135deg, #ffb6c1, #ff6f91);
+  font-family: Arial, sans-serif;
+
+  background-image:
+    linear-gradient(rgba(255,105,135,.25), rgba(255,105,135,.35)),
+    url("background.jpg");
+
+  background-size: cover;
+  background-position: center;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: sans-serif;
 }
 
 .container {
@@ -28,19 +36,20 @@ body {
 }
 
 .heart {
-  font-size: 100px;
-  animation: beat 0.8s infinite alternate;
-  filter: drop-shadow(0 8px 15px rgba(0,0,0,.2));
+  font-size: 110px;
+  animation: beat .7s infinite alternate;
+  filter: drop-shadow(0 5px 15px rgba(0,0,0,.3));
 }
 
 h1 {
-  font-size: 38px;
-  margin: 15px 0 10px;
-  text-shadow: 0 3px 8px rgba(0,0,0,.2);
+  font-size: 40px;
+  margin: 15px 0 8px;
+  text-shadow: 0 3px 8px rgba(0,0,0,.4);
 }
 
 p {
-  font-size: 20px;
+  font-size: 21px;
+  text-shadow: 0 2px 5px rgba(0,0,0,.4);
 }
 
 @keyframes beat {
@@ -55,9 +64,9 @@ p {
 .floating-heart {
   position: absolute;
   bottom: -50px;
-  font-size: 25px;
   animation: floatUp 5s linear forwards;
-  opacity: .8;
+  opacity: .9;
+  z-index: 1;
 }
 
 @keyframes floatUp {
@@ -65,42 +74,85 @@ p {
     transform: translateY(0) scale(.7);
     opacity: 0;
   }
+
   20% {
     opacity: 1;
   }
+
   100% {
     transform: translateY(-110vh) scale(1.5);
     opacity: 0;
   }
+}
+
+.music-btn {
+  margin-top: 20px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 30px;
+  background: rgba(255,255,255,.9);
+  color: #ff4f75;
+  font-size: 17px;
+  cursor: pointer;
 }
 </style>
 </head>
 
 <body>
 
+<audio id="music" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
 <div class="container">
+
   <div class="heart">❤️</div>
+
   <h1>ดีกันนะที่รัก</h1>
   <h1>เค้ารักที่รักน้าาา กอดดดดดดดดด</h1>
   <p>เค้าขอโทษนะ 🥺❤️</p>
+
+  <button class="music-btn" onclick="playMusic()">
+    🎵 เปิดเพลง
+  </button>
+
 </div>
 
 <script>
-function createHeart() {
-  const heart = document.createElement("div");
-  heart.className = "floating-heart";
-  heart.innerHTML = ["❤️","💕","💗","💖","💘"][Math.floor(Math.random()5)];
 
-  heart.style.left = Math.random() 100 + "vw";
-  heart.style.animationDuration = (3 + Math.random() * 3) + "s";
-  heart.style.fontSize = (18 + Math.random() * 30) + "px";
+const music = document.getElementById("music");
+
+function playMusic() {
+  music.play();
+  document.querySelector(".music-btn").innerHTML = "🎵 กำลังเล่นเพลง";
+}
+
+function createHeart() {
+
+  const heart = document.createElement("div");
+
+  heart.className = "floating-heart";
+
+  heart.innerHTML =
+    ["❤️","💕","💗","💖","💘"][Math.floor(Math.random()*5)];
+
+  heart.style.left = Math.random() * 100 + "vw";
+
+  heart.style.animationDuration =
+    (3 + Math.random() * 3) + "s";
+
+  heart.style.fontSize =
+    (18 + Math.random() * 35) + "px";
 
   document.body.appendChild(heart);
 
-  setTimeout(() => heart.remove(), 6000);
+  setTimeout(() => {
+    heart.remove();
+  }, 6000);
 }
 
-setInterval(createHeart, 350);
+setInterval(createHeart, 300);
+
 </script>
 
 </body>
